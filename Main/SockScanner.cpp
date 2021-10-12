@@ -1,6 +1,10 @@
 int[] readRGB() {
   //TODO
-  return []
+  int RGBValue[3];
+
+  
+  
+  return [];
 }
 
 //TODO input type not clear yet
