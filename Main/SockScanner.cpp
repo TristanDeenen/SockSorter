@@ -1,9 +1,14 @@
+#include "Sockscanner.h"
+#include "Color_Sensor.h"
+
 int[] readRGB() {
   //TODO
   int RGBValue[3];
 
-  
-  
+  RGBValue[0] = readRedFrequency();
+  RGBValue[1] = readGreenFrequency(); 
+  RGBValue[2] = readBlueFrequency();
+
   return [];
 }
 
