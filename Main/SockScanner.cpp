@@ -14,9 +14,10 @@ int[] readRGB(int S2, int S3, int sensorOut) {
   return RGBValue;
 }
 
-//TODO input type not clear yet
-void readIR() {
+bool readIR() {
   //TODO
+
+  return SockUnderSensor;  
 }
 
 // TODO Need to decide which data type sock-id will be for function type
