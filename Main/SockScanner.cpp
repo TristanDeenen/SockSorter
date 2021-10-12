@@ -3,13 +3,15 @@
 
 int[] readRGB() {
   //TODO
+  // Declaring array for the RGB value
   int RGBValue[3];
 
+  // Using the color sensor to get values for the frequency
   RGBValue[0] = readRedFrequency();
   RGBValue[1] = readGreenFrequency(); 
   RGBValue[2] = readBlueFrequency();
 
-  return [];
+  return RGBValue;
 }
 
 //TODO input type not clear yet
