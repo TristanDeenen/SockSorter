@@ -1,17 +1,14 @@
-int servoPin = D0;
+#include <Servo.h>
 
-// declare Servo object variable called "servo"
-Servo servo;
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
 
 void setup() {
-    // turn on servo motor
-    servo.attach(servoPin);
+  myservo.attach(11);  // attaches the servo on pin 9 to the servo object
 }
 
 void loop() {
-    // stop rotation
-    servo.writeMicroseconds(1500);
 
-    // alternate code (use either one but not both)
-    // servo.write(90);
+    myservo.write(0);              //tell servo to go either forwards or backwards by sending a value between 0 to 180
+ 
 }
