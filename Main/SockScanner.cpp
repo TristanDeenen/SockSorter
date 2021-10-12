@@ -1,8 +1,8 @@
 #include "Sockscanner.h"
 #include "Color_Sensor.h"
+#include "IR_Sensor.h"
 
 int[] readRGB(int S2, int S3, int sensorOut) {
-  //TODO
   // Declaring array for the RGB value
   int RGBValue[3];
 
@@ -14,9 +14,8 @@ int[] readRGB(int S2, int S3, int sensorOut) {
   return RGBValue;
 }
 
-bool readIR() {
-  //TODO
-
+bool readIR(int irSensorPin) {
+  SockUnderSensor = sockUnderSensor(int irSensorPin);
   return SockUnderSensor;  
 }
 

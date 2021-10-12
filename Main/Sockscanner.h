@@ -3,7 +3,7 @@
 #include <Arduino.h>
 
 int[] readRGB(int S2, int S3, int sensorOut);
-void readIR()();
+bool readIR(int irSensorPin);
 void createSockID(int[] rgb, int todo);
 int getSockID();
 
