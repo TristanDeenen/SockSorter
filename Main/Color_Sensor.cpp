@@ -2,6 +2,18 @@
 
 //WARNING, now prints values for RGB, comment out per function to disable!
 
+void setupColorSensor(int S0, int S1, int S2, int S3, int sensorOut) {
+  pinMode(S0, OUTPUT);
+  pinMode(S1, OUTPUT);
+  pinMode(S2, OUTPUT);
+  pinMode(S3, OUTPUT);
+  pinMode(sensorOut, INPUT);
+  
+  // Setting frequency-scaling to 20%
+  digitalWrite(S0,HIGH);
+  digitalWrite(S1,LOW);
+}
+
 int readRedFrequency(int S2, int S3, int sensorOut){
   int frequency = 0;
   digitalWrite(S2,LOW);
@@ -11,7 +23,7 @@ int readRedFrequency(int S2, int S3, int sensorOut){
   //Remapping the value of the frequency to the RGB Model of 0 to 255
   frequency = map(frequency, 20,177,255,0);
   Serial.print("R= ");//printing name
-  Serial.print(red_frequency);//printing RED color frequency
+  Serial.print(frequency);//printing RED color frequency
   Serial.print("  ");
   return frequency;
 }
@@ -25,7 +37,7 @@ int readGreenFrequency(int S2, int S3, int sensorOut){
   //Remaping the value of the frequency to the RGB Model of 0 to 255
   frequency = map(frequency, 30,250,255,0);
   Serial.print("G= ");//printing name
-  Serial.print(green_frequency);//printing RED color frequency
+  Serial.print(frequency);//printing RED color frequency
   Serial.print("  ");
   return frequency;
 }
@@ -39,7 +51,7 @@ int readBlueFrequency(int S2, int S3, int sensorOut){
   //Remaping the value of the frequency to the RGB Model of 0 to 255
   frequency = map(frequency, 35,200,255,0);
   Serial.print("B= ");//printing name
-  Serial.print(blue_frequency);//printing RED color frequency
+  Serial.print(frequency);//printing RED color frequency
   Serial.println("  ");
   return frequency;
 }

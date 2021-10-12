@@ -2,9 +2,9 @@
 #define SOCK_SCANNER_H
 #include <Arduino.h>
 
-int[] readRGB(int S2, int S3, int sensorOut);
+int readRGB(int *ar, int S2, int S3, int sensorOut);
 bool readIR(int irSensorPin);
-void createSockID(int[] rgb, int todo);
+void createSockID(int *rgb, int todo);
 int getSockID();
 
 #endif
