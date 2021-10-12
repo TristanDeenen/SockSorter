@@ -21,7 +21,7 @@ bool readIR(int irSensorPin) {
 
 // TODO Need to decide which data type sock-id will be for function type
 // TODO Input todo should be IR sensor
-void createSockID(int[] rgb, int todo) {
+void createSockID(int[] RGBValue, int todo) {
   //TODO
 }
 
