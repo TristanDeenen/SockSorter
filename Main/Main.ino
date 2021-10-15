@@ -14,6 +14,7 @@
 #define S3 7
 #define sensorOut 8
 #define irPin 69 // TODO CHANGE
+#define rollerband_servo_pin 420 // TODO CHANGE
 #define rollerband_speed 75
 
 void setup() {
@@ -21,11 +22,12 @@ void setup() {
   setupColorSensor(S0, S1, S2, S3, sensorOut);
   pinMode (irPin, INPUT);
   
-  //TODO slightly inefficient solution, might change later
-  rollerbandToggle(true); // WARNING FUNCTION INCORRECT: SPEED IS SET AT 0 AND TOGGLE FEATURE NOT IMPLEMENTED YET
   Servo myServo;
-  
+  rollerbandInit(rollerband_servo_pin, myServo);
+  rollerbandStart(rollerband_speed, myServo); //TODO slightly inefficient solution, might change later
 }
+
+return int[bins][measurements][3] sockDB
 
  // Main loop after setup is finished
  void loop(){
@@ -39,6 +41,5 @@ void setup() {
     // Move the correct bin into output position
    // moveBin();
    
- }
-
+  }
  }
