@@ -1,15 +1,14 @@
 #include "Rollerband_servo.h"
 #include <Servo.h>
 
-void rollerbandInit(int servoPin){
-  Servo myservo;
-  myservo.attach(servoPin);
+void rollerbandInit(int servoPin, Servo myServo){
+  myServo.attach(servoPin);
 }
 
-void rollerbandStart(int rollerband_speed){
-  myservo.write(rollerband_speed);
+void rollerbandStart(int rollerband_speed, Servo myServo){
+  myServo.write(rollerband_speed);
 }
 
-void rollerbandStop(){
-  myservo.write(90);
+void rollerbandStop(, Servo myServo){
+  myServo.write(90);
 }

@@ -20,8 +20,11 @@ void setup() {
   Serial.begin(9600);
   setupColorSensor(S0, S1, S2, S3, sensorOut);
   pinMode (irPin, INPUT);
+  
   //TODO slightly inefficient solution, might change later
-  rollerbandToggle(true); // WARNING FUNCTION INCORRECT: SPEED IS SET AT 0 AND TOGGLE FEATURE NOT IMPLEMENTED YET 
+  rollerbandToggle(true); // WARNING FUNCTION INCORRECT: SPEED IS SET AT 0 AND TOGGLE FEATURE NOT IMPLEMENTED YET
+  Servo myServo;
+  
 }
 
  // Main loop after setup is finished
