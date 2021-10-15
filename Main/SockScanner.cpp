@@ -1,5 +1,5 @@
-/** This file takes the input from the RGB-scanner and the IR-scanner
-and converts that data to a sock-id. Then it outputs the id.*/
+/** This file takes the input from the RGB-scanner
+and outs the data into a sock-id. Then it outputs the id.*/
 
 #include "Sockscanner.h"
 #include "Color_Sensor.h"
@@ -12,14 +12,10 @@ int readRGB(int *ar, int S2, int S3, int sensorOut) {
   ar[2] = readBlueFrequency(S2, S3, sensorOut);
 }
 
-// TODO Need to decide which data type sock-id will be for function type
-// TODO Input todo should be IR sensor
-void createSockID(int *ar, int measurements) {
-  //TODO
-  
+void createSockID(int *ar, int measurements, int rollerbandSpeed, int S2, int S3, int sensorOut) {
+  rollerbandStart(rollerbandSpeed);
   while(i < measurements){
-    rollerbandToggle(sockCheck);
-    readRGB(ar[0])
+    readRGB(ar[i], int S2, int S3, int sensorOut);
   }
-  
+  rollerbandStop();
 }

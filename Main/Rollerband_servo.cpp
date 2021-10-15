@@ -1,7 +1,15 @@
 #include "Rollerband_servo.h"
+#include <Servo.h>
 
-void rollerbandToggle(bool rollerbandStop){
-  int rollerband_speed = 0;
+void rollerbandInit(int servoPin){
+  Servo myservo;
+  myservo.attach(servoPin);
+}
 
+void rollerbandStart(int rollerband_speed){
   myservo.write(rollerband_speed);
+}
+
+void rollerbandStop(){
+  myservo.write(90);
 }
