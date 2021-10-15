@@ -9,6 +9,6 @@ void rollerbandStart(int rollerband_speed, Servo myServo){
   myServo.write(rollerband_speed);
 }
 
-void rollerbandStop(, Servo myServo){
+void rollerbandStop(Servo myServo){
   myServo.write(90);
 }

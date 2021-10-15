@@ -6,16 +6,22 @@ and outs the data into a sock-id. Then it outputs the id.*/
 #include "IR_Sensor.h"
 #include "Rollerband_servo.h"
 
+int initSockDB(int bins, int measurements){
+  return int[bins][measurements][3] sockDB;
+}
+
 int readRGB(int *ar, int S2, int S3, int sensorOut) {
   ar[0] = readRedFrequency(S2, S3, sensorOut);
   ar[1] = readGreenFrequency(S2, S3, sensorOut); 
   ar[2] = readBlueFrequency(S2, S3, sensorOut);
 }
 
-void createSockID(int *ar, int measurements, int rollerbandSpeed, int S2, int S3, int sensorOut) {
-  rollerbandStart(rollerbandSpeed);
+void createSockID(int *ar, int measurements, int rollerbandSpeed, int S2, int S3, int sensorOut, Servo myServo) {
+  rollerbandStart(int rollerband_speed, Servo myServo);
+  int i = 0;
   while(i < measurements){
     readRGB(ar[i], int S2, int S3, int sensorOut);
+    i++;
   }
-  rollerbandStop();
+  rollerbandStop(Servo myServo);
 }

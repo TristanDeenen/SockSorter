@@ -2,8 +2,8 @@
 #define ROLLERBAND_SERVO_H
 #include <Arduino.h>
 
-void rollerbandInit(int servoPin);
-void rollerbandStart(int rollerband_speed);
-void rollerbandStop();
+void rollerbandInit(int servoPin, Servo myServo);
+void rollerbandStart(int rollerband_speed, Servo myServo);
+void rollerbandStop(Servo myServo);
 
 #endif
