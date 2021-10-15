@@ -37,9 +37,8 @@ void setup() {
  //Main loop after setup is finished
  //Check for a sock
  if sockUnderSensor(irPin){
-   //Turn rollerband
-
    //Get measurements
+   createSockID()
  }
 
  }
