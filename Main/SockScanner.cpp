@@ -4,6 +4,7 @@ and converts that data to a sock-id. Then it outputs the id.*/
 #include "Sockscanner.h"
 #include "Color_Sensor.h"
 #include "IR_Sensor.h"
+#include "Rollerband_servo.h"
 
 int readRGB(int *ar, int S2, int S3, int sensorOut) {
   // Declaring array for the RGB value
@@ -21,19 +22,14 @@ int readRGB(int *ar, int S2, int S3, int sensorOut) {
   //return RGBValue;
 }
 
-bool readIR(int irSensorPin) {
-  bool sockCheck = sockUnderSensor(irSensorPin);
-  return sockCheck;  
-}
-
 // TODO Need to decide which data type sock-id will be for function type
 // TODO Input todo should be IR sensor
-void createSockID(int *RGBValue, bool sockCheck) {
+void createSockID(int *ar, bool sockCheck, int measurements) {
   //TODO
   
-}
-
-// TODO Object type sockID to be decided, int placeholder
-int getSockID(int sockID) {
-  return sockID;
+  while(i < measurements){
+    rollerbandToggle(sockCheck);
+    readRGB(ar[0])
+  }
+  
 }
