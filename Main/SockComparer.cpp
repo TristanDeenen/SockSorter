@@ -22,8 +22,8 @@ int vectorNorm(int vec[]){
   return sqrt(pow(vec[0], 2) + pow(vec[1], 2) + pow(vec[2], 2));
 }
 
-int compareSocks(int RGBValue1[], int RGBValue2[]){
+int cosineSimilarity(int RGBValue1[], int RGBValue2[]){
   //epic comparison algorithm to compare socks
-  int comparisonMeasure = dotProduct(RGBValue1, RGBValue2)/(vectorNorm(RGBValue1)*vectorNorm(RGBValue2)); 
-  return comparisonMeasure;
+  int cosineSimilarity = dotProduct(RGBValue1, RGBValue2)/(vectorNorm(RGBValue1)*vectorNorm(RGBValue2)); 
+  return cosineSimilarity;
 }
