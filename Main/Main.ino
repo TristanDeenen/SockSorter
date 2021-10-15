@@ -34,11 +34,22 @@ void setup() {
  //int arr[] = readRGB(S2, S3, sensorOut);
  //Serial.println(arr[0] + arr[1] + arr[2] + "BELANGRIJK");
 
+
+
+
  //Main loop after setup is finished
+ //Initilise triple array 
  //Check for a sock
  if sockUnderSensor(irPin){
+   //initialise new sock id
+
    //Get measurements
-   createSockID()
+   createSockID(int *ar, bool sockCheck, int measurements)
+
+   //Comparesock_id
+   
+
  }
+ delay(5000)
 
  }
