@@ -5,5 +5,7 @@
 int dotProduct(int vec1[], int vec2[]);
 int vectorNorm(int vec[]);
 int cosineSimilarity(int RGBValue1[], int RGBValue2[]);
+int sockComparer(int *ar, int bins, int measurements)
+double calculateAverage(int a[], int n);
 
 #endif

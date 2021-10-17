@@ -28,31 +28,57 @@ int cosineSimilarity(int RGBValue1[], int RGBValue2[]){
   return cosineSimilarity;
 }
 
+double calculateAverage(int a[]){
+    //find sum of array element
+    int sum = 0;
+    int n = sizeof(a)/sizeof(a[0]);
+    int i = 0;
+
+    while(i<n){
+      sum += a[i];
+      i++;
+    }
+
+    return (double)sum/n;
+}
+
 int sockComparer(int *ar, int bins, int measurements){
   //even more epic comparison algorithm that compares socks with imput the sockDB
   
-  int cosineSimilarities[measurements];
-
   //find last filled array, if only one array then return 0, then if match return 1 if no match return 2
   int x = 0;
   while(x < bins){
-    if(ar[x][0][0] == NULL){
-      
-      break
+    if(ar[x][0][0] != -1){  //Placeholder should be the same as defined in main file
+      x++;
+    } else{
+      break;
     }
   }
 
-  int i = 0;
-  while(i < measurements){
-    cosineSimilarities[i] = cosineSimilarity()
+  lastSockID = x - 1; //now it is the index of the last recorded sock id, this is important for the comparison
+
+  if(lastSockID == -1){
+    return 0;
   }
 
+  int avgcosSimilarities[lastSockID - 1];
+
+  int q = 0;
+  while q < lastSockID{
+    int cosSimilarities[measurements];
+    int i = 0;
+    while(i < measurements){
+      cosineSimilarities[i] = cosineSimilarity(ar[lastSockID][i], ar[q][i]);
+    }
+    
+    avgcosSimilarities[q] = calculateAverage(cosineSimilarities);
+  }
 }
 
 /*sockDB = ar[[bins][measurements][3]]
 = {{[255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200]}, 
-{[], [], [], [], [], [], [], [], [], []}, 
-{[], [], [], [], [], [], [], [], [], []}, 
-{[], [], [], [], [], [], [], [], [], []}, 
-{[], [], [], [], [], [], [], [], [], []}} */
+{[255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200]}, 
+{[-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1]}, 
+{[-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1]}, 
+{[-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1]}} */
 
