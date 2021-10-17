@@ -28,14 +28,25 @@ int cosineSimilarity(int RGBValue1[], int RGBValue2[]){
   return cosineSimilarity;
 }
 
-bool sockComparer(int *ar, int measurements){
+int sockComparer(int *ar, int bins, int measurements){
   //even more epic comparison algorithm that compares socks with imput the sockDB
-  int i = 0;
+  
   int cosineSimilarities[measurements];
 
+  //find last filled array, if only one array then return 0, then if match return 1 if no match return 2
+  int x = 0;
+  while(x < bins){
+    if(ar[x][0][0] == NULL){
+      
+      break
+    }
+  }
+
+  int i = 0;
   while(i < measurements){
     cosineSimilarities[i] = cosineSimilarity()
   }
+
 }
 
 /*sockDB = ar[[bins][measurements][3]]
