@@ -4,7 +4,7 @@ If there is a match, then it outputs the corresponding basket. */
 #include "SockComparer.h"
 #include "SockScanner.h"
 
-int dotProduct(){
+/*int dotProduct(){
   for(unsigned i = 0; i < vec1.ncols(); ++i){
   ret += vec1[i] * vec2[i];
 }
@@ -15,4 +15,4 @@ int compareSocks(int sockID1, int sockID2) {
 
   return comparisonMeasure;
 }
-
+*/

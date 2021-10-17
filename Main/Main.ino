@@ -5,7 +5,8 @@
 #include "IR_Sensor.h"
 //#include "SockComparer.h"
 #include "SockScanner.h"
-//#include ""
+#include "Rollerband_servo.h"
+#include <Servo.h>
 
 //Define pins on Arduino. Might be changed later
 #define S0 4
@@ -16,6 +17,8 @@
 #define irPin 69 // TODO CHANGE
 #define rollerband_servo_pin 420 // TODO CHANGE
 #define rollerband_speed 75
+#define bins 5
+#define measurements 10
 
 void setup() {
   Serial.begin(9600);
@@ -25,21 +28,29 @@ void setup() {
   Servo myServo;
   rollerbandInit(rollerband_servo_pin, myServo);
   rollerbandStart(rollerband_speed, myServo); //TODO slightly inefficient solution, might change later
-}
 
-return int[bins][measurements][3] sockDB
+  int sockDB[bins][measurements][3];
+  for(int i = 0; i < bins; i++) {
+    for(int j = 0; j < measurements; j++) {
+      for(int k = 0; k < 3; k++) {
+        sockDB[i][j][k] = -1; //WARNING -1 PLACEHOLDER
+        Serial.println(sockDB[i][j][k]);        
+      }
+    }
+  }
+}
 
  // Main loop after setup is finished
  void loop(){
 
   //Check for a sock
-  if sockUnderSensor(irPin){
+  //if (sockUnderSensor(irPin)){
     //Get measurements
-    createSockID(); //TODO wait on implementation to specify function more
-    compareSocks(); //TODO function does not exist yet
+    //createSockID(); //TODO wait on implementation to specify function more
+    //compareSocks(); //TODO function does not exist yet
 
     // Move the correct bin into output position
    // moveBin();
    
-  }
+  //}
  }
