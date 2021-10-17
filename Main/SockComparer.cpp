@@ -23,7 +23,25 @@ int vectorNorm(int vec[]){
 }
 
 int cosineSimilarity(int RGBValue1[], int RGBValue2[]){
-  //epic comparison algorithm to compare socks
+  //epic comparison algorithm to compare RGB values
   int cosineSimilarity = dotProduct(RGBValue1, RGBValue2)/(vectorNorm(RGBValue1)*vectorNorm(RGBValue2)); 
   return cosineSimilarity;
 }
+
+bool sockComparer(int *ar, int measurements){
+  //even more epic comparison algorithm that compares socks with imput the sockDB
+  int i = 0;
+  int cosineSimilarities[measurements];
+
+  while(i < measurements){
+    cosineSimilarities[i] = cosineSimilarity()
+  }
+}
+
+/*sockDB = ar[[bins][measurements][3]]
+= {{[255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200], [255, 0, 200]}, 
+{[], [], [], [], [], [], [], [], [], []}, 
+{[], [], [], [], [], [], [], [], [], []}, 
+{[], [], [], [], [], [], [], [], [], []}, 
+{[], [], [], [], [], [], [], [], [], []}} */
+

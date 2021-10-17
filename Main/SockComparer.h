@@ -4,6 +4,6 @@
 
 int dotProduct(int vec1[], int vec2[]);
 int vectorNorm(int vec[]);
-int compareSocks(int RGBValue1[], int RGBValue2[]);
+int cosineSimilarity(int RGBValue1[], int RGBValue2[]);
 
 #endif

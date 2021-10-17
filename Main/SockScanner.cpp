@@ -16,12 +16,10 @@ int readRGB(int *ar, int S2, int S3, int sensorOut) {
   ar[2] = readBlueFrequency(S2, S3, sensorOut);
 }
 
-void createSockID(int *ar, int measurements, int rollerbandSpeed, int S2, int S3, int sensorOut, Servo myServo) {
-  rollerbandStart(int rollerband_speed, Servo myServo);
+void createSockID(int *ar, int measurements, int S2, int S3, int sensorOut) {
   int i = 0;
   while(i < measurements){
     readRGB(ar[i], int S2, int S3, int sensorOut);
     i++;
   }
-  rollerbandStop(Servo myServo);
 }
