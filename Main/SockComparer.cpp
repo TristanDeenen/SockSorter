@@ -42,10 +42,8 @@ double calculateAverage(int a[]){
     return (double)sum/n;
 }
 
-int sockComparer(int *ar, int bins, int measurements){
-  //even more epic comparison algorithm that compares socks with imput the sockDB
-  
-  //find last filled array, if only one array then return 0, then if match return 1 if no match return 2
+int lastSockIDfinder(int *ar){
+  //find last filled array, if only one array then return 0, otherwise returns the argument for sockMatcher, namely an array avgcosSimilarities
   int x = 0;
   while(x < bins){
     if(ar[x][0][0] != -1){  //Placeholder should be the same as defined in main file
@@ -58,8 +56,14 @@ int sockComparer(int *ar, int bins, int measurements){
   lastSockID = x - 1; //now it is the index of the last recorded sock id, this is important for the comparison
 
   if(lastSockID == -1){
-    return 0;
+    return NULL; //Value if the sock is the first sock scanned
+  } else{
+    return lastSockID;
   }
+}
+
+int sockComparer(int *ar, int bins, int measurements, int lastSockID){
+  //even more epic comparison algorithm that compares socks with imput the sockDB
 
   int avgcosSimilarities[lastSockID - 1];
 
@@ -70,9 +74,24 @@ int sockComparer(int *ar, int bins, int measurements){
     while(i < measurements){
       cosineSimilarities[i] = cosineSimilarity(ar[lastSockID][i], ar[q][i]);
     }
-    
+
     avgcosSimilarities[q] = calculateAverage(cosineSimilarities);
   }
+
+  return avgcosSimilarities;
+}
+
+int sockMatcher(int lastSockID, int avgcosSimilarities, int treshold){
+  int i = 0;
+  int matchSockID = NULL;
+
+  while(i < lastSockID && matchSockID == NULL){
+    if(avgcosSimilarities[i] > treshold){
+      matchSockID = i; 
+    }
+  }
+
+  return matchSockID;
 }
 
 /*sockDB = ar[[bins][measurements][3]]
