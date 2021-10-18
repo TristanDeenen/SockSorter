@@ -17,5 +17,6 @@ void createSockID(int *ar, int measurements, int S2, int S3, int sensorOut) {
   while(i < measurements){
     readRGB(ar[i], S2, S3, sensorOut);
     i++;
+    delay(250); //Makes sure measurements have some time in between them TODO finetune
   }
 }

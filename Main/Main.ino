@@ -44,13 +44,14 @@ void setup() {
  void loop(){
 
   //Check for a sock
-  //if (sockUnderSensor(irPin)){
+  if (sockUnderSensor(irPin)){
     //Get measurements
-    //createSockID(); //TODO wait on implementation to specify function more
+    createSockID(sockDB[0], measurements, S2, S3, sensorOut);
     //compareSocks(); //TODO function does not exist yet
 
     // Move the correct bin into output position
    // moveBin();
    
-  //}
+  }
+  delay(250); //TODO finetune
  }
