@@ -47,7 +47,7 @@ void setup() {
   //Check for a sock
   if (sockUnderSensor(irPin)){
     //Get measurements
-    createSockID(sockDB[0], measurements, S2, S3, sensorOut);
+    //createSockID(sockDB[0], measurements, S2, S3, sensorOut);
     //compareSocks(); //TODO function does not exist yet
 
     // Move the correct bin into output position

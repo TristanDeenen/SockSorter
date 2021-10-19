@@ -42,7 +42,7 @@ double calculateAverage(int a[]){
     return (double)sum/n;
 }
 
-int lastSockIDfinder(int *ar[], int bins){
+int lastSockIDfinder(int ***ar, int bins){
   //find last filled array, if only one array then return 0, otherwise returns the argument for sockMatcher, namely an array avgcosSimilarities
   int x = 0;
   while(x < bins){
@@ -53,7 +53,7 @@ int lastSockIDfinder(int *ar[], int bins){
     }
   }
 
-  lastSockID = x - 1; //now it is the index of the last recorded sock id, this is important for the comparison
+  int lastSockID = x - 1; //now it is the index of the last recorded sock id, this is important for the comparison
 
   if(lastSockID == -1){
     return NULL; //Value if the sock is the first sock scanned
@@ -65,17 +65,19 @@ int lastSockIDfinder(int *ar[], int bins){
 int sockComparer(int *ar[], int bins, int measurements, int lastSockID){
   //even more epic comparison algorithm that compares socks with imput the sockDB
 
-  int avgcosSimilarities[lastSockID - 1];
-
+  double avgcosSimilarities[lastSockID - 1];
+  
   int q = 0;
-  while q < lastSockID{
+  while(q < lastSockID){
     int cosSimilarities[measurements];
     int i = 0;
     while(i < measurements){
-      cosineSimilarities[i] = cosineSimilarity(ar[lastSockID][i], ar[q][i]);
+      cosSimilarities[i] = cosineSimilarity(ar[lastSockID][i], ar[q][i]);
+      i++;
     }
-
-    avgcosSimilarities[q] = calculateAverage(cosineSimilarities);
+    
+    avgcosSimilarities[q] = calculateAverage(cosSimilarities);
+    q++;
   }
 
   return avgcosSimilarities;
