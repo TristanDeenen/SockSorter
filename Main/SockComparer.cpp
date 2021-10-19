@@ -42,7 +42,7 @@ double calculateAverage(int a[]){
     return (double)sum/n;
 }
 
-int lastSockIDfinder(int *ar){
+int lastSockIDfinder(int *ar[], int bins){
   //find last filled array, if only one array then return 0, otherwise returns the argument for sockMatcher, namely an array avgcosSimilarities
   int x = 0;
   while(x < bins){
@@ -62,7 +62,7 @@ int lastSockIDfinder(int *ar){
   }
 }
 
-int sockComparer(int *ar, int bins, int measurements, int lastSockID){
+int sockComparer(int *ar[], int bins, int measurements, int lastSockID){
   //even more epic comparison algorithm that compares socks with imput the sockDB
 
   int avgcosSimilarities[lastSockID - 1];
@@ -81,7 +81,7 @@ int sockComparer(int *ar, int bins, int measurements, int lastSockID){
   return avgcosSimilarities;
 }
 
-int sockMatcher(int lastSockID, int avgcosSimilarities, int treshold){
+int sockMatcher(int lastSockID, int avgcosSimilarities[], int treshold){
   int i = 0;
   int matchSockID = NULL;
 
@@ -100,4 +100,3 @@ int sockMatcher(int lastSockID, int avgcosSimilarities, int treshold){
 {[-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1]}, 
 {[-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1]}, 
 {[-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1], [-1, -1, -1]}} */
-
