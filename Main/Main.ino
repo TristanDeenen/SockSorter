@@ -19,6 +19,8 @@
 #define rollerband_speed 75
 #define bins 5
 #define measurements 10
+int sockDB[bins][measurements][3];
+
 
 void setup() {
   Serial.begin(9600);
@@ -29,7 +31,6 @@ void setup() {
   rollerbandInit(rollerband_servo_pin, myServo);
   rollerbandStart(rollerband_speed, myServo); //TODO slightly inefficient solution, might change later
 
-  int sockDB[bins][measurements][3];
   for(int i = 0; i < bins; i++) {
     for(int j = 0; j < measurements; j++) {
       for(int k = 0; k < 3; k++) {
