@@ -3,6 +3,6 @@
 #include <Arduino.h>
 
 int readRGB(int *ar, int S2, int S3, int sensorOut);
-void createSockID(int *ar, int measurement);
+void createSockID(int *ar, int measurements, int S2, int S3, int sensorOut);
 
 #endif
