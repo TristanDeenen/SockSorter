@@ -3,7 +3,7 @@
  */
 #include "Color_Sensor.h"
 #include "IR_Sensor.h"
-//#include "SockComparer.h"
+#include "SockComparer.h"
 #include "SockScanner.h"
 #include "Rollerband_servo.h"
 #include <Servo.h>
@@ -43,11 +43,13 @@ void setup() {
 
  // Main loop after setup is finished
  void loop(){
-
+  
   //Check for a sock
   if (sockUnderSensor(irPin)){
     //Get measurements
-    //createSockID(sockDB[0], measurements, S2, S3, sensorOut);
+    //int newID = lastSockIDfinder(sockDB, bins);
+    int arr[measurements][3];
+    createSockID(sockDB[0], measurements, S2, S3, sensorOut);
     //compareSocks(); //TODO function does not exist yet
 
     // Move the correct bin into output position
