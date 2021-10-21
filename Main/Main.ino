@@ -19,6 +19,7 @@
 #define rollerband_speed 75
 #define bins 5
 #define measurements 10
+#define treshold 0.75
 int sockDB[bins][measurements][3];
 
 
@@ -47,13 +48,14 @@ void setup() {
   //Check for a sock
   if (sockUnderSensor(irPin)){
     //Get measurements
-    //int newID = lastSockIDfinder(sockDB, bins);
-    int arr[measurements][3];
     createSockID(sockDB[0], measurements, S2, S3, sensorOut);
-    //compareSocks(); //TODO function does not exist yet
+
+    int newID = lastSockIDfinder(sockDB, bins);
+    int avgcosSimilarities = sockComparer(sockDB, bins, measurements, newID);
+    int matchSockID = sockMatcher(newID, avgcosSimilarities, treshold);
 
     // Move the correct bin into output position
-   // moveBin();
+   // moveBin() or beeper();
    
   }
   delay(250); //TODO finetune
