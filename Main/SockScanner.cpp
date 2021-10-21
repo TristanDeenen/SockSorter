@@ -6,7 +6,6 @@ and outs the data into a sock-id. Then it outputs the id.*/
 #include "IR_Sensor.h"
 #include "Rollerband_servo.h"
 
-#define ms 10 // WARNING NEEDS TO MATCH WITH measurements IN MAIN FILE
 
 int readRGB(int ar[], int S2, int S3, int sensorOut) {
   ar[0] = readRedFrequency(S2, S3, sensorOut);

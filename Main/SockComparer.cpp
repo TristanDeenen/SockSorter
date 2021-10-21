@@ -5,17 +5,17 @@ If there is a match, then it outputs the corresponding basket. */
 #include "SockScanner.h"
 
 int dotProduct(int vec1[], int vec2[]){
-    //return dot product of an array
-    int i = 0;
-    int result = NULL;
+  //return dot product of an array
+  int i = 0;
+  int result = NULL;
 
-    while(i < 3){
-    result += vec1[i] * vec2[i];
-    i++;
-    }
-
-    return result;
+  while(i < 3){
+  result += vec1[i] * vec2[i];
+  i++;
   }
+
+  return result;
+}
 
 int vectorNorm(int vec[]){
   //return Euclidian norm of an array
@@ -29,20 +29,20 @@ int cosineSimilarity(int RGBValue1[], int RGBValue2[]){
 }
 
 double calculateAverage(int a[]){
-    //find sum of array element
-    int sum = 0;
-    int n = sizeof(a)/sizeof(a[0]);
-    int i = 0;
+  //find sum of array element
+  int sum = 0;
+  int n = sizeof(a)/sizeof(a[0]);
+  int i = 0;
 
-    while(i<n){
-      sum += a[i];
-      i++;
-    }
+  while(i<n){
+    sum += a[i];
+    i++;
+  }
 
-    return (double)sum/n;
+  return (double)sum/n;
 }
 
-int lastSockIDfinder(int ***ar, int bins){
+int lastSockIDfinder(int ar[][10][3], int bins){ //second parameter should be equal to measurements in main file
   //find last filled array, if only one array then return 0, otherwise returns the argument for sockMatcher, namely an array avgcosSimilarities
   int x = 0;
   while(x < bins){
@@ -62,12 +62,12 @@ int lastSockIDfinder(int ***ar, int bins){
   }
 }
 
-int sockComparer(int *ar[], int bins, int measurements, int lastSockID){
+int sockComparer(int ar[][10][3], int bins, int measurements, int lastSockID){ //second parameter should be equal to measurements in main file
   //even more epic comparison algorithm that compares socks with imput the sockDB
 
   double avgcosSimilarities[lastSockID - 1];
   
-  int q = 0;
+  int q = 0; // bins
   while(q < lastSockID){
     int cosSimilarities[measurements];
     int i = 0;
