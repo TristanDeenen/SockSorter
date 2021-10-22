@@ -57,8 +57,11 @@ void setup() {
     createSockID(sockDB[freshID], measurements, S2, S3, sensorOut);
 
     int newID = lastSockIDfinder(sockDB, bins);
+    Serial.println(newID);
     int avgcosSimilarities = sockComparer(sockDB, bins, measurements, newID);
+    Serial.println("uuuuuuu");
     int matchSockID = sockMatcher(newID, avgcosSimilarities, treshold);
+    Serial.println(matchSockID);
 
     // Move the correct bin into output position
    // moveBin() or beeper();
@@ -74,7 +77,6 @@ void setup() {
       
    delay(10000);  
 
-   
   }
   delay(250); //TODO finetune
  }
