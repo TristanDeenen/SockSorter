@@ -9,16 +9,7 @@ void setup()
 void loop()
 {
   int statusSensor = digitalRead (IRSensor);  // 1 means no object in front, 0 means object in front
-  
-//  if (statusSensor == 1){
-//    Serial.println("too close");
-//  }
-//  
-//  else
-//  {
-//     Serial.println("too far");
-//  }
-//  delay(200);
-Serial.println(statusSensor);
-delay(200);                                   // delay to stabilize the sensor 
+
+  Serial.println(statusSensor);
+  delay(200);                                   // delay to stabilize the sensor 
 }
