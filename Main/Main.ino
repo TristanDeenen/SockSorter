@@ -14,7 +14,7 @@
 #define S2 6
 #define S3 7
 #define sensorOut 8
-#define irPin 69 // TODO CHANGE
+#define irPin 23// TODO CHANGE
 #define rollerband_servo_pin 420 // TODO CHANGE
 #define rollerband_speed 75
 #define bins 5
@@ -26,7 +26,7 @@ int sockDB[bins][measurements][3];
 void setup() {
   Serial.begin(9600);
   setupColorSensor(S0, S1, S2, S3, sensorOut);
-  pinMode (irPin, INPUT);
+  pinMode(irPin, INPUT);
   
   Servo myServo;
   rollerbandInit(rollerband_servo_pin, myServo);
@@ -40,6 +40,9 @@ void setup() {
       }
     }
   }
+
+  delay(10000);
+  Serial.println("xxxxxx");
 }
 
  // Main loop after setup is finished
@@ -48,7 +51,10 @@ void setup() {
   //Check for a sock
   if (sockUnderSensor(irPin)){
     //Get measurements
-    createSockID(sockDB[0], measurements, S2, S3, sensorOut);
+    int lastID = lastSockIDfinder(sockDB, bins);
+    int freshID = lastID + 1;
+    
+    createSockID(sockDB[freshID], measurements, S2, S3, sensorOut);
 
     int newID = lastSockIDfinder(sockDB, bins);
     int avgcosSimilarities = sockComparer(sockDB, bins, measurements, newID);
@@ -56,6 +62,18 @@ void setup() {
 
     // Move the correct bin into output position
    // moveBin() or beeper();
+   Serial.println("yyyyyy");
+   
+       for(int i = 0; i < bins; i++) {
+        for(int j = 0; j < measurements; j++) {
+          for(int k = 0; k < 3; k++) {
+            Serial.println(sockDB[i][j][k]);        
+          }
+        }
+      }
+      
+   delay(10000);  
+
    
   }
   delay(250); //TODO finetune

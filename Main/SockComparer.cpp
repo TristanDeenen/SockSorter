@@ -55,11 +55,12 @@ int lastSockIDfinder(int ar[][10][3], int bins){ //second parameter should be eq
 
   int lastSockID = x - 1; //now it is the index of the last recorded sock id, this is important for the comparison
 
-  if(lastSockID == -1){
+  /*if(lastSockID == -1){
     return NULL; //Value if the sock is the first sock scanned
   } else{
     return lastSockID;
-  }
+  }*/
+  return lastSockID;
 }
 
 int sockComparer(int ar[][10][3], int bins, int measurements, int lastSockID){ //second parameter should be equal to measurements in main file

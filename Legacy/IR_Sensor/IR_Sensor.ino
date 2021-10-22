@@ -1,4 +1,4 @@
-int IRSensor = 2; // connect ir sensor to arduino pin 2
+int IRSensor = 23; // connect ir sensor to arduino pin 2
 
 void setup() 
 {
