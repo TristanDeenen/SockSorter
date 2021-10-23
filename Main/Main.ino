@@ -15,7 +15,7 @@
 #define S3 7
 #define sensorOut 8
 #define irPin 23// TODO CHANGE
-#define rollerband_servo_pin 420 // TODO CHANGE
+#define rollerband_servo_pin 8 // TODO CHANGE
 #define rollerband_speed 75
 #define bins 5
 #define measurements 10
@@ -40,7 +40,7 @@ void setup() {
       }
     }
   }
-
+  
   delay(10000);
   Serial.println("xxxxxx");
 }
@@ -53,7 +53,9 @@ void setup() {
     //Get measurements
     int lastID = lastSockIDfinder(sockDB, bins);
     int freshID = lastID + 1;
-    
+
+    //rollerbandStop(myServo);
+    //rollerbandStart(rollerband_speed, myServo);
     createSockID(sockDB[freshID], measurements, S2, S3, sensorOut);
 
     int newID = lastSockIDfinder(sockDB, bins);

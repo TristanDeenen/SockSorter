@@ -9,7 +9,7 @@ void setup(){
 
 void loop(){
 
-  servo.write(180);
+  servo.write(0);
   //tell servo to go either forwards or backwards by sending a value between 0 to 180
  
 }

@@ -3,6 +3,8 @@
 #define S2 4
 #define S3 5
 #define sensorOut 6
+#include <Servo.h>
+#define rollerband_servo_pin 8
 
 int red_frequency = 0;
 int green_frequency = 0;
@@ -14,6 +16,10 @@ void setup() {
   pinMode(S2, OUTPUT);
   pinMode(S3, OUTPUT);
   pinMode(sensorOut, INPUT);
+
+  Servo myServo;
+  myServo.attach(rollerband_servo_pin);
+  myServo.write(60);
   
   // Setting frequency-scaling to 20%
   digitalWrite(S0,HIGH);
