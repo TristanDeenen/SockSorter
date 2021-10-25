@@ -38,7 +38,7 @@ void setup() {
   for(int i = 0; i < bins; i++) {
     for(int j = 0; j < measurements; j++) {
       for(int k = 0; k < 3; k++) {
-        sockDB[i][j][k] = -1000;
+        sockDB[i][j][k] =   000;
         Serial.println(sockDB[i][j][k]);        
       }
     }
@@ -73,7 +73,7 @@ void setup() {
    // moveBin() or beeper();
    Serial.println("yyyyyy");
    beeper(matchSockID);
-   
+ 
        for(int i = 0; i < bins; i++) {
         for(int j = 0; j < measurements; j++) {
           for(int k = 0; k < 3; k++) {
@@ -83,8 +83,6 @@ void setup() {
       }
       
    delay(10000);  
-
-   
   }
   delay(250); //TODO finetune
  }
