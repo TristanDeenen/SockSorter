@@ -55,10 +55,11 @@ int lastSockIDfinder(int ar[][10][3], int bins){ //second parameter should be eq
 
   int lastSockID = x - 1; //now it is the index of the last recorded sock id, this is important for the comparison
 
-  if(lastSockID > bins){
-    return NULL; //Edge case TODO
-  }
-  
+  /*if(lastSockID == -1){
+    return NULL; //Value if the sock is the first sock scanned
+  } else{
+    return lastSockID;
+  }*/
   return lastSockID;
 }
 
@@ -83,6 +84,7 @@ int sockComparer(int ar[][10][3], int bins, int measurements, int lastSockID){ /
   return avgcosSimilarities;
 }
 
+
 int sockMatcher(int lastSockID, int avgcosSimilarities[], int treshold){
   int i = 0;
   int matchSockID = NULL;
@@ -91,10 +93,16 @@ int sockMatcher(int lastSockID, int avgcosSimilarities[], int treshold){
     if(avgcosSimilarities[i] > treshold){
       matchSockID = i; 
     }
-    i++;
   }
-
   return matchSockID;
+}
+
+void clearBin(int sockDB[][3], int measurements) {
+  for (int i = 0; i < measurements; i++) {
+    for (int j = 0; j < 3; j++) {
+      sockDB[i][j] = -1;
+    }
+  }
 }
 
 /*int sockDB = {{{255, 0, 200}, {255, 0, 200}, {255, 0, 200}, {255, 0, 200}, {255, 0, 200}, {255, 0, 200}, {255, 0, 200}, {255, 0, 200}, {255, 0, 200}, {255, 0, 200}}, 
