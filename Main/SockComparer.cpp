@@ -42,24 +42,30 @@ double calculateAverage(int a[]){
   return (double)sum/n;
 }
 
+ // TODO COMMENT IS INCORRECT?? find last filled array, if only one array then return 0, otherwise returns the argument for sockMatcher, namely an array avgcosSimilarities
+ // Skips over empty entries in ar, correctly stops at last filled sockID
+ // WARNING there could be empty entries in the entries before lastSockID
 int lastSockIDfinder(int ar[][10][3], int bins){ //second parameter should be equal to measurements in main file
-  //find last filled array, if only one array then return 0, otherwise returns the argument for sockMatcher, namely an array avgcosSimilarities
-  int x = 0;
-  while(x < bins){
-    if(ar[x][0][0] != -1){  //Placeholder should be the same as defined in main file
-      x++;
-    } else{
-      break;
+
+  int lastSockID = NULL; // Keeps track of last filled entry in ar 
+  for (int x = 0; x < bins; x++){
+    if(ar[x][0][0] != -1000){  //Placeholder should be the same as defined in main file
+      lastSockID = x;
     }
   }
-
-  int lastSockID = x - 1; //now it is the index of the last recorded sock id, this is important for the comparison
-
   if(lastSockID > bins){
     return NULL; //Edge case TODO
   }
-  
   return lastSockID;
+}
+
+int findEmptyEntry(int ar[][10][3], int bins){ //second parameter should be equal to measurements in main file
+  for (int i = 0; i < bins; i++) {
+    if (ar[i][0][0]== -1000) {
+      return i;
+    }
+  }
+  return NULL; // Case if no empty slot if found
 }
 
 int sockComparer(int ar[][10][3], int bins, int measurements, int lastSockID){ //second parameter should be equal to measurements in main file
@@ -100,7 +106,7 @@ int sockMatcher(int lastSockID, int avgcosSimilarities[], int treshold){
 void clearBin(int sockDB[][3], int measurements) {
   for (int i = 0; i < measurements; i++) {
     for (int j = 0; j < 3; j++) {
-      sockDB[i][j] = -1;
+      sockDB[i][j] = -1000;
     }
   }
 }

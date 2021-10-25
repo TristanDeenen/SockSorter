@@ -38,7 +38,7 @@ void setup() {
   for(int i = 0; i < bins; i++) {
     for(int j = 0; j < measurements; j++) {
       for(int k = 0; k < 3; k++) {
-        sockDB[i][j][k] = -1; //WARNING -1 PLACEHOLDER
+        sockDB[i][j][k] = -1000;
         Serial.println(sockDB[i][j][k]);        
       }
     }
@@ -54,15 +54,14 @@ void setup() {
   //Check for a sock
   if (sockUnderSensor(irPin)){
     //Get measurements
-    int lastID = lastSockIDfinder(sockDB, bins);
-    int freshID = lastID + 1;
+    int newID = findEmptyEntry(sockDB, bins);
 
     //rollerbandStop(myServo);
     //rollerbandStart(rollerband_speed, myServo);
     
-    createSockID(sockDB[freshID], measurements, S2, S3, sensorOut);
+    createSockID(sockDB[newID], measurements, S2, S3, sensorOut);
 
-    int newID = lastSockIDfinder(sockDB, bins);
+    // int newID = lastSockIDfinder(sockDB, bins); //TODO not correct way of finding new sockID entry
     int avgcosSimilarities = sockComparer(sockDB, bins, measurements, newID);
     int matchSockID = sockMatcher(newID, avgcosSimilarities, treshold);
     if (matchSockID != NULL) {
