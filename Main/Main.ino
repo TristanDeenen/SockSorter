@@ -6,6 +6,7 @@
 #include "SockComparer.h"
 #include "SockScanner.h"
 #include "Rollerband_servo.h"
+#include "Beeper.h"
 #include <Servo.h>
 
 //Define pins on Arduino. Might be changed later
@@ -14,8 +15,9 @@
 #define S2 6
 #define S3 7
 #define sensorOut 8
+#define buzzerPin = 2
 #define irPin 23// TODO CHANGE
-#define rollerband_servo_pin 420 // TODO CHANGE
+#define rollerband_servo_pin 8 // TODO CHANGE
 #define rollerband_speed 75
 #define bins 5
 #define measurements 10
@@ -27,6 +29,7 @@ void setup() {
   Serial.begin(9600);
   setupColorSensor(S0, S1, S2, S3, sensorOut);
   pinMode(irPin, INPUT);
+  pinMode(buzzerPin, OUTPUT);
   
   Servo myServo;
   rollerbandInit(rollerband_servo_pin, myServo);
@@ -53,6 +56,9 @@ void setup() {
     //Get measurements
     int lastID = lastSockIDfinder(sockDB, bins);
     int freshID = lastID + 1;
+
+    //rollerbandStop(myServo);
+    //rollerbandStart(rollerband_speed, myServo);
     
     createSockID(sockDB[freshID], measurements, S2, S3, sensorOut);
 
@@ -67,6 +73,7 @@ void setup() {
     // Move the correct bin into output position
    // moveBin() or beeper();
    Serial.println("yyyyyy");
+   beeper(matchSockID);
    
        for(int i = 0; i < bins; i++) {
         for(int j = 0; j < measurements; j++) {
