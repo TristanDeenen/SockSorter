@@ -42,7 +42,7 @@ double calculateAverage(int a[]){
   return (double)sum/n;
 }
 
- // TODO COMMENT IS INCORRECT?? find last filled array, if only one array then return 0, otherwise returns the argument for sockMatcher, namely an array avgcosSimilarities
+
  // Skips over empty entries in ar, correctly stops at last filled sockID
  // WARNING there could be empty entries in the entries before lastSockID
 int lastSockIDfinder(int ar[][10][3], int bins){ //second parameter should be equal to measurements in main file
