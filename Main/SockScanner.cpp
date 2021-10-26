@@ -11,14 +11,33 @@ int readRGB(int ar[], int S2, int S3, int sensorOut) {
   ar[0] = readRedFrequency(S2, S3, sensorOut);
   ar[1] = readGreenFrequency(S2, S3, sensorOut); 
   ar[2] = readBlueFrequency(S2, S3, sensorOut);
+  
+  delay(50);
 }
 
 void createSockID(int ar[][3], int measurements, int S2, int S3, int sensorOut) {
   int i = 0;
+  Serial.println("Measuring color..." );
   while(i < measurements){
-    readRGB(ar[i], S2, S3, sensorOut);
-    i++;
-    Serial.println(i);  
-    delay(250); //Makes sure measurements have some time in between them TODO finetune
+    int RGBavg[5][3];
+    
+    for (int x = 0; x < 5; x++){
+      
+      readRGB(RGBavg[x], S2, S3, sensorOut);
+    }
+
+    int r = 0;
+    int g = 0;
+    int b = 0;
+    for (int j = 0; j < 5; j++) {
+      r += RGBavg[j][0];
+      g += RGBavg[j][1];
+      b += RGBavg[j][2];
+    }
+    ar[i][0] = r / 5;
+    ar[i][1] = g / 5;
+    ar[i][2] = b / 5; 
+
+    i++;  
   }
 }

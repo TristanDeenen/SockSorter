@@ -9,20 +9,21 @@
 #include "Beeper.h"
 #include <Servo.h>
 
-//Define pins on Arduino. Might be changed later
-#define S0 4
-#define S1 5
-#define S2 6
-#define S3 7
-#define sensorOut 8
-#define buzzerPin 2
-#define irPin 23// TODO CHANGE
-#define rollerband_servo_pin 8 // TODO CHANGE
-#define rollerband_speed 75
+//Define pins on Arduino
+#define S0 2
+#define S1 3
+#define S2 4
+#define S3 5
+#define sensorOut 6
+#define buzzerPin 22
+#define irPin 23
+#define rollerband_servo_pin 8
+#define rollerband_speed 70
 #define bins 5
 #define measurements 10
-#define treshold 0.75
-#define delay_time_buzzer 1
+#define tresholdCos 999
+#define tresholdLength 800
+#define delay_time_buzzer 1000
 int sockDB[bins][measurements][3];
 
 
@@ -31,22 +32,19 @@ void setup() {
   setupColorSensor(S0, S1, S2, S3, sensorOut);
   pinMode(irPin, INPUT);
   pinMode(buzzerPin, OUTPUT);
+  digitalWrite(buzzerPin,HIGH);
   
   Servo myServo;
   rollerbandInit(rollerband_servo_pin, myServo);
-  rollerbandStart(rollerband_speed, myServo); //TODO slightly inefficient solution, might change later
+  rollerbandStart(rollerband_speed, myServo);
 
   for(int i = 0; i < bins; i++) {
     for(int j = 0; j < measurements; j++) {
       for(int k = 0; k < 3; k++) {
-        sockDB[i][j][k] =   000;
-        Serial.println(sockDB[i][j][k]);        
+        sockDB[i][j][k] =  -1000;       
       }
     }
   }
-
-  delay(10000);
-  Serial.println("xxxxxx");
 }
 
  // Main loop after setup is finished
@@ -54,36 +52,79 @@ void setup() {
   
   //Check for a sock
   if (sockUnderSensor(irPin)){
+    delay(500);
     //Get measurements
     int newID = findEmptyEntry(sockDB, bins);
-
-    //rollerbandStop(myServo);
-    //rollerbandStart(rollerband_speed, myServo);
-    
     createSockID(sockDB[newID], measurements, S2, S3, sensorOut);
 
     // int newID = lastSockIDfinder(sockDB, bins); //TODO not correct way of finding new sockID entry
-    int avgcosSimilarities = sockComparer(sockDB, bins, measurements, newID);
-    int matchSockID = sockMatcher(newID, avgcosSimilarities, treshold);
-    if (matchSockID != NULL) {
+    //int avgcosSimilarities = sockComparer(sockDB, bins, measurements, newID);
+
+    double avgcosSimilarities[bins];
+    double avglengthSimilarities[bins];
+  
+    for (int i = 0; i < newID; i++){
+      avgcosSimilarities[i] = 0;
+      avglengthSimilarities[i] = 0;
+    }
+
+    int q = 0; // bins
+    while(q < newID){
+      double cosSimilarities[measurements];
+      double lengthSimilarities[measurements];
+      
+      int i = 0;
+      while(i < measurements){
+        cosSimilarities[i] = cosineSimilarity(sockDB[newID][i], sockDB[q][i]);
+        lengthSimilarities[i] = lengthSimilarity(sockDB[newID][i], sockDB[q][i]);
+        i++;
+      }
+      avgcosSimilarities[q] = calculateAverage(cosSimilarities);
+      avglengthSimilarities[q] = calculateAverage(lengthSimilarities);
+      /*Serial.println(q);
+      Serial.println("avgcossimilarity");
+      Serial.println(avgcosSimilarities[q]);
+      Serial.println("avglengthsimilarity");
+      Serial.println(avglengthSimilarities[q]);*/
+      q++;
+    }
+
+    /*double a[2];
+    for(int i = 0; i < 2; i++){
+      a[i] = avgcosSimilarities[i];
+    }
+
+    for(int i = 0; i < 2; i++){
+      Serial.println("nieuwe test ouleh");
+      Serial.println(i);
+      Serial.println("avgcossimilarity");
+      Serial.println(avgcosSimilarities[i]);
+      Serial.println("avglengthsimilarity");
+      Serial.println(avglengthSimilarities[i]);
+      
+    }*/
+    
+    int matchSockID = sockMatcher(newID, avgcosSimilarities, avglengthSimilarities, tresholdCos, tresholdLength);
+    if (matchSockID != -1) {
       clearBin(sockDB[matchSockID], measurements);
       clearBin(sockDB[newID], measurements);
     }
-
-    // Move the correct bin into output position
-   // moveBin() or beeper();
-   Serial.println("yyyyyy");
-   beeper(buzzerPin, matchSockID, delay_time_buzzer);
+  
+    // Beep the correct bin
+   Serial.println("beeper beep boop");
+   Serial.println(matchSockID);
+   beeper(buzzerPin, matchSockID + 1, delay_time_buzzer);
  
-       for(int i = 0; i < bins; i++) {
-        for(int j = 0; j < measurements; j++) {
-          for(int k = 0; k < 3; k++) {
-            Serial.println(sockDB[i][j][k]);        
+   /*for(int i = 0; i < bins; i++) {
+      for(int j = 0; j < measurements; j++) {
+        for(int k = 0; k < 3; k++) {
+          if (sockDB[i][j][k] != -1000) {
+          Serial.println(sockDB[i][j][k]);        
           }
         }
       }
-      
-   delay(10000);  
+    Serial.print("NEW ENTRY");
+    }*/
+    delay(5000);  
   }
-  delay(250); //TODO finetune
  }
