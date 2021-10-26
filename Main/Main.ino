@@ -15,13 +15,14 @@
 #define S2 6
 #define S3 7
 #define sensorOut 8
-#define buzzerPin = 2
+#define buzzerPin 2
 #define irPin 23// TODO CHANGE
 #define rollerband_servo_pin 8 // TODO CHANGE
 #define rollerband_speed 75
 #define bins 5
 #define measurements 10
 #define treshold 0.75
+#define delay_time_buzzer 1
 int sockDB[bins][measurements][3];
 
 
@@ -72,7 +73,7 @@ void setup() {
     // Move the correct bin into output position
    // moveBin() or beeper();
    Serial.println("yyyyyy");
-   beeper(matchSockID);
+   beeper(buzzerPin, matchSockID, delay_time_buzzer);
  
        for(int i = 0; i < bins; i++) {
         for(int j = 0; j < measurements; j++) {
