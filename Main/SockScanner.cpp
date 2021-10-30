@@ -9,10 +9,12 @@ and outs the data into a sock-id. Then it outputs the id.*/
 
 int readRGB(int ar[], int S2, int S3, int sensorOut) {
   ar[0] = readRedFrequency(S2, S3, sensorOut);
+  delay(100);
   ar[1] = readGreenFrequency(S2, S3, sensorOut); 
+  delay(100);
   ar[2] = readBlueFrequency(S2, S3, sensorOut);
   
-  delay(50);
+  delay(100);
 }
 
 void createSockID(int ar[][3], int measurements, int S2, int S3, int sensorOut) {
@@ -21,7 +23,7 @@ void createSockID(int ar[][3], int measurements, int S2, int S3, int sensorOut) 
   while(i < measurements){
     int RGBavg[5][3];
     
-    for (int x = 0; x < 5; x++){
+    for (int x = 0; x < 1; x++){
       
       readRGB(RGBavg[x], S2, S3, sensorOut);
     }
@@ -29,7 +31,7 @@ void createSockID(int ar[][3], int measurements, int S2, int S3, int sensorOut) 
     int r = 0;
     int g = 0;
     int b = 0;
-    for (int j = 0; j < 5; j++) {
+    for (int j = 0; j < 1; j++) {
       r += RGBavg[j][0];
       g += RGBavg[j][1];
       b += RGBavg[j][2];

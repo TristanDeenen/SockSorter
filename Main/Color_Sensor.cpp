@@ -21,7 +21,7 @@ int readRedFrequency(int S2, int S3, int sensorOut){
   // Reading the output frequency
   frequency = pulseIn(sensorOut, LOW);
   //Remapping the value of the frequency to the RGB Model of 0 to 255
-  frequency = map(frequency, 25,72,255,0);
+  //frequency = map(frequency, 25,72,255,0);
   Serial.print("R= ");//printing name
   Serial.print(frequency);//printing RED color frequency
   Serial.print("  ");
@@ -35,7 +35,7 @@ int readGreenFrequency(int S2, int S3, int sensorOut){
   // Reading the output frequency
   frequency = pulseIn(sensorOut, LOW);
   //Remaping the value of the frequency to the RGB Model of 0 to 255
-  frequency = map(frequency, 30,90,255,0);
+  //frequency = map(frequency, 30,90,255,0);
   Serial.print("G= ");//printing name
   Serial.print(frequency);//printing RED color frequency
   Serial.print("  ");
@@ -49,7 +49,7 @@ int readBlueFrequency(int S2, int S3, int sensorOut){
   // Reading the output frequency
   frequency = pulseIn(sensorOut, LOW);
   //Remaping the value of the frequency to the RGB Model of 0 to 255
-  frequency = map(frequency, 25,70,255,0);
+  //frequency = map(frequency, 25,70,255,0);
   Serial.print("B= ");//printing name
   Serial.print(frequency);//printing RED color frequency
   Serial.println("  ");

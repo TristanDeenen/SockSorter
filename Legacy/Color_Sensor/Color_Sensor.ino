@@ -19,7 +19,7 @@ void setup() {
 
   Servo myServo;
   myServo.attach(rollerband_servo_pin);
-  myServo.write(75);
+  myServo.write(90);
   
   // Setting frequency-scaling to 20%
   digitalWrite(S0,HIGH);

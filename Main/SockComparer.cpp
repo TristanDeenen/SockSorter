@@ -92,13 +92,16 @@ int findEmptyEntry(int ar[][10][3], int bins){ //second parameter should be equa
 //int sockComparer(int ar[][10][3], int bins, int measurements, int lastSockID){ //second parameter should be equal to measurements in main file
   //even more epic comparison algorithm that compares socks with imput the sockDB
 
-int sockMatcher(int lastSockID, double avgcosSimilarities[], double avgLengthSimilarities[], double tresholdCos, double tresholdLength){
+int sockMatcher(int lastSockID, double avgcosSimilarities[], double avgLengthSimilarities[], double tresholdCos, double tresholdLength, int bins){
   int i = 0;
   int matchSockID = -1;
   Serial.println(lastSockID);
   Serial.println(matchSockID);
   
-  while(i < lastSockID && matchSockID == -1){
+  while(i < bins && matchSockID == -1){
+    if (i == lastSockID) {
+      
+    }else {
     Serial.println("Looking for match ");
     Serial.println(i);
     Serial.println("and");
@@ -117,6 +120,7 @@ int sockMatcher(int lastSockID, double avgcosSimilarities[], double avgLengthSim
       Serial.println("MatchsockID:");
       Serial.println(matchSockID);
     }
+  }
     i++;
   }
 

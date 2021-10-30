@@ -10,7 +10,7 @@ int sockComparer(int *ar, int bins, int measurements);
 double calculateAverage(double a[]);
 int lastSockIDfinder(int ar[][10][3], int bins);
 int findEmptyEntry(int ar[][10][3], int bins);
-int sockMatcher(int lastSockID, double avgcosSimilarities[], double avgLengthSimilarities[], double tresholdCos, double tresholdLength);
+int sockMatcher(int lastSockID, double avgcosSimilarities[], double avgLengthSimilarities[], double tresholdCos, double tresholdLength, int bins);
 //int sockComparer(int ar[][10][3], int bins, int measurements, int lastSockID);
 void clearBin(int sockDB[][3], int measurements);
 #endif

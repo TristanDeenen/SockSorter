@@ -21,8 +21,8 @@
 #define rollerband_speed 70
 #define bins 5
 #define measurements 10
-#define tresholdCos 999
-#define tresholdLength 800
+#define tresholdCos 500
+#define tresholdLength 500
 #define delay_time_buzzer 1000
 int sockDB[bins][measurements][3];
 
@@ -35,7 +35,7 @@ void setup() {
   digitalWrite(buzzerPin,HIGH);
   
   Servo myServo;
-  rollerbandInit(rollerband_servo_pin, myServo);
+ rollerbandInit(rollerband_servo_pin, myServo);
   rollerbandStart(rollerband_speed, myServo);
 
   for(int i = 0; i < bins; i++) {
@@ -63,13 +63,13 @@ void setup() {
     double avgcosSimilarities[bins];
     double avglengthSimilarities[bins];
   
-    for (int i = 0; i < newID; i++){
+    for (int i = 0; i < bins; i++){
       avgcosSimilarities[i] = 0;
       avglengthSimilarities[i] = 0;
     }
 
     int q = 0; // bins
-    while(q < newID){
+    while(q < bins){
       double cosSimilarities[measurements];
       double lengthSimilarities[measurements];
       
@@ -77,6 +77,8 @@ void setup() {
       while(i < measurements){
         cosSimilarities[i] = cosineSimilarity(sockDB[newID][i], sockDB[q][i]);
         lengthSimilarities[i] = lengthSimilarity(sockDB[newID][i], sockDB[q][i]);
+              Serial.println("cossimilarity");
+      Serial.println(cosSimilarities[i]);
         i++;
       }
       avgcosSimilarities[q] = calculateAverage(cosSimilarities);
@@ -104,16 +106,20 @@ void setup() {
       
     }*/
     
-    int matchSockID = sockMatcher(newID, avgcosSimilarities, avglengthSimilarities, tresholdCos, tresholdLength);
+    int matchSockID = sockMatcher(newID, avgcosSimilarities, avglengthSimilarities, tresholdCos, tresholdLength, bins);
     if (matchSockID != -1) {
       clearBin(sockDB[matchSockID], measurements);
       clearBin(sockDB[newID], measurements);
+      beeper(buzzerPin, matchSockID + 1, delay_time_buzzer);
+    } else {
+      beeper(buzzerPin, newID + 1, delay_time_buzzer);
     }
   
     // Beep the correct bin
    Serial.println("beeper beep boop");
-   Serial.println(matchSockID);
-   beeper(buzzerPin, matchSockID + 1, delay_time_buzzer);
+   Serial.println(matchSockID + 2);
+   Serial.println(" matchSockID " );
+
  
    /*for(int i = 0; i < bins; i++) {
       for(int j = 0; j < measurements; j++) {
@@ -125,6 +131,6 @@ void setup() {
       }
     Serial.print("NEW ENTRY");
     }*/
-    delay(5000);  
+    delay(2000);  
   }
  }
